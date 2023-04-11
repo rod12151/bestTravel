@@ -2,10 +2,7 @@ package com.rodmel.best_travel.domain.entities;
 
 import com.rodmel.best_travel.util.AeroLine;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -31,6 +28,8 @@ public class FlyEntity implements Serializable {
     private BigDecimal price;
     @Enumerated(EnumType.STRING)
     private AeroLine aeroLine;
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,

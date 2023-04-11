@@ -1,10 +1,7 @@
 package com.rodmel.best_travel.domain.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Set;
 
@@ -17,6 +14,9 @@ public class TourEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
@@ -24,6 +24,9 @@ public class TourEntity {
             mappedBy = "tour"
     )
     private Set<ReservationEntity> reservations;
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
@@ -32,7 +35,7 @@ public class TourEntity {
     )
     private Set<TicketEntity> tickets;
     @ManyToOne
-    @JoinColumn(name ="customer"
+    @JoinColumn(name ="id_customer"
 
     )
     private CustomerEntity customer;
