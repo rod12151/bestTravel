@@ -64,6 +64,7 @@ public class BestTravelApplication implements CommandLineRunner {
 				.price(fly.getPrice().multiply(BigDecimal.TEN))
 				.arrivalDate(LocalDate.now())
 				.departureDate(LocalDate.now())
+				.purchaseDate(LocalDate.now())
 				.customer(customer)
 				.tour(tour)
 				.fly(fly)
@@ -80,8 +81,14 @@ public class BestTravelApplication implements CommandLineRunner {
 				.price(hotel.getPrice().multiply(BigDecimal.TEN))
 				.build();
 		System.out.println("-------SAVE-------");
+		tour.addReservation(reservation);
+		tour.updateReservations();
 
-		this.tourRepository.save(tour);
+		tour.addTicket(ticket);
+		tour.updateTickets();
+		var tourSave = this.tourRepository.save(tour);
+		Thread.sleep(8000);
+		this.tourRepository.deleteById(tourSave.getId());
 
 
 

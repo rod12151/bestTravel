@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 @Entity(name = "reservation")
 @NoArgsConstructor
@@ -37,6 +38,9 @@ public class ReservationEntity implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private  CustomerEntity customer;
+
+
+
 
 
 
