@@ -27,5 +27,11 @@ public class TicketController {
     public ResponseEntity<TicketResponse> put(@PathVariable UUID id,@RequestBody TicketRequest request){
         return ResponseEntity.ok(this.ticketService.update(request,id));
     }
+    @DeleteMapping(path = "{id}")
+    public ResponseEntity<Void> delete(@PathVariable UUID id){
+        this.ticketService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }
