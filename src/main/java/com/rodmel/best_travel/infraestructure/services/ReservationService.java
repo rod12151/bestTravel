@@ -50,18 +50,38 @@ public class ReservationService implements IReservationService {
     }
 
     @Override
-    public ReservationResponse read(UUID uuid) {
-        return null;
+    public ReservationResponse read(UUID id) {
+        var reservationFromBd = this.reservationRepository.findById(id).orElseThrow();
+        return this.entityToResponse(reservationFromBd);
     }
 
     @Override
-    public ReservationResponse update(ReservationRequest request, UUID uuid) {
-        return null;
+    public ReservationResponse update(ReservationRequest request, UUID id) {
+        var hotel = hotelRepository.findById(request.getIdHotel()).orElseThrow();
+        var reservationToUpdate = reservationRepository.findById(id).orElseThrow();
+        reservationToUpdate.setHotel(hotel);
+        reservationToUpdate.setTotalDays(request.getTotalDays());
+        reservationToUpdate.setDateTimeReservation(LocalDateTime.now());
+        reservationToUpdate.setDateStart(LocalDate.now());
+        reservationToUpdate.setDateEnd(LocalDate.now().plusDays(request.getTotalDays()));
+        reservationToUpdate.setPrice(hotel.getPrice().add(hotel.getPrice().multiply(charges_price_percentage)));
+
+        var reservationUpdated = this.reservationRepository.save(reservationToUpdate);
+        log.info("Ticket update with id {}",reservationUpdated.getId());
+
+        return this.entityToResponse(reservationUpdated);
     }
 
     @Override
-    public void delete(UUID uuid) {
+    public void delete(UUID id) {
+        var reservationToDelete = reservationRepository.findById(id).orElseThrow();
+        this.reservationRepository.delete(reservationToDelete);
 
+    }
+    @Override
+    public BigDecimal findPrice(Long hotelId) {
+        var hotel = this.hotelRepository.findById(hotelId).orElseThrow();
+        return hotel.getPrice().add(hotel.getPrice().multiply(charges_price_percentage));
     }
     private ReservationResponse entityToResponse(ReservationEntity entity){
         var response = new ReservationResponse();
