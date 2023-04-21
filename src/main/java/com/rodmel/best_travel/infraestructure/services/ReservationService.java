@@ -1,12 +1,12 @@
 package com.rodmel.best_travel.infraestructure.services;
 
 import com.rodmel.best_travel.api.models.request.ReservationRequest;
-import com.rodmel.best_travel.api.models.responses.FlyResponse;
+
 import com.rodmel.best_travel.api.models.responses.HotelResponse;
 import com.rodmel.best_travel.api.models.responses.ReservationResponse;
-import com.rodmel.best_travel.api.models.responses.TicketResponse;
+
 import com.rodmel.best_travel.domain.entities.ReservationEntity;
-import com.rodmel.best_travel.domain.entities.TicketEntity;
+
 import com.rodmel.best_travel.domain.repositories.CustomerRepository;
 import com.rodmel.best_travel.domain.repositories.HotelRepository;
 import com.rodmel.best_travel.domain.repositories.ReservationRepository;
