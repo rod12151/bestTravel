@@ -12,7 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Data
 @Builder
-public class TurRequest implements Serializable {
+public class TourRequest implements Serializable {
     public Serializable customerId;
     private Set<TourFlyRequest> flights;
     private Set<TourHotelRequest> hotels;
