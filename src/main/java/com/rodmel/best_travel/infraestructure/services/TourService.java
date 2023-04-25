@@ -8,6 +8,7 @@ import com.rodmel.best_travel.domain.repositories.FlyRepository;
 import com.rodmel.best_travel.domain.repositories.HotelRepository;
 import com.rodmel.best_travel.domain.repositories.TourRepository;
 import com.rodmel.best_travel.infraestructure.abstract_services.ITourService;
+import com.rodmel.best_travel.infraestructure.helpers.CustomerHelper;
 import com.rodmel.best_travel.infraestructure.helpers.TourHelper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +33,7 @@ public class TourService implements ITourService {
     private final CustomerRepository customerRepository;
 
     private final TourHelper tourHelper;
+    private final CustomerHelper customerHelper;
 
 
 
@@ -51,6 +53,8 @@ public class TourService implements ITourService {
                 .build();
 
         var tourSaved = this.tourRepository.save(tourToSave);
+        //contador
+        this.customerHelper.incrase(customer.getDni(), TourService.class);
 
         return TourResponse.builder()
                 .reservationIds(tourSaved.getReservations().stream().map(ReservationEntity::getId).collect(Collectors.toSet()))

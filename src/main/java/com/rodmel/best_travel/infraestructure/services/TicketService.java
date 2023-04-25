@@ -8,6 +8,7 @@ import com.rodmel.best_travel.domain.repositories.CustomerRepository;
 import com.rodmel.best_travel.domain.repositories.FlyRepository;
 import com.rodmel.best_travel.domain.repositories.TicketRepository;
 import com.rodmel.best_travel.infraestructure.abstract_services.ITicketService;
+import com.rodmel.best_travel.infraestructure.helpers.CustomerHelper;
 import com.rodmel.best_travel.util.BestTravelUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,8 @@ public class TicketService implements ITicketService {
     private  final FlyRepository flyRepository;
     private final CustomerRepository customerRepository;
     private final TicketRepository ticketRepository;
+
+    private final CustomerHelper customerHelper;
     @Override
     public TicketResponse create(TicketRequest request) {
 
@@ -45,6 +48,7 @@ public class TicketService implements ITicketService {
                 .departureDate(BestTravelUtil.getRandomLatter())
                 .build();
         var ticketPersisted = this.ticketRepository.save(ticketToPersist);
+        this.customerHelper.incrase(customer.getDni(), TicketService.class);
         log.info("Ticket saved with id: {}", ticketPersisted.getId());
         return this.entityToResponse(ticketPersisted);
 

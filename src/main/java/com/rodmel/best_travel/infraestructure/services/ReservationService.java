@@ -11,6 +11,7 @@ import com.rodmel.best_travel.domain.repositories.CustomerRepository;
 import com.rodmel.best_travel.domain.repositories.HotelRepository;
 import com.rodmel.best_travel.domain.repositories.ReservationRepository;
 import com.rodmel.best_travel.infraestructure.abstract_services.IReservationService;
+import com.rodmel.best_travel.infraestructure.helpers.CustomerHelper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -30,6 +31,7 @@ public class ReservationService implements IReservationService {
     private final CustomerRepository customerRepository;
     private final ReservationRepository reservationRepository;
 
+    private final CustomerHelper customerHelper;
 
     @Override
     public ReservationResponse create(ReservationRequest request) {
@@ -46,6 +48,7 @@ public class ReservationService implements IReservationService {
                 .price(hotel.getPrice().add(hotel.getPrice().multiply(charges_price_percentage)))
                 .build();
         var reservationPersisted = reservationRepository.save(reservationToPersist);
+        this.customerHelper.incrase(customer.getDni(), ReservationService.class);
         return this.entityToResponse(reservationPersisted);
     }
 
@@ -76,6 +79,7 @@ public class ReservationService implements IReservationService {
     public void delete(UUID id) {
         var reservationToDelete = reservationRepository.findById(id).orElseThrow();
         this.reservationRepository.delete(reservationToDelete);
+
 
     }
     @Override
