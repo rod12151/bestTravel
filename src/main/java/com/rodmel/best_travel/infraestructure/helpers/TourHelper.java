@@ -42,9 +42,10 @@ public class TourHelper {
         });
         return response;
     }
-    public Set<ReservationEntity> createReservations(HashMap<HotelEntity,Integer> hotels,CustomerEntity customer){
+
+    public Set<ReservationEntity> createReservations(HashMap<HotelEntity, Integer> hotels, CustomerEntity customer) {
         var response = new HashSet<ReservationEntity>(hotels.size());
-        hotels.forEach((hotel,totalDays)->{
+        hotels.forEach((hotel, totalDays) -> {
             var reservationToPersist = ReservationEntity.builder()
                     .id(UUID.randomUUID())
                     .hotel(hotel)
@@ -60,7 +61,8 @@ public class TourHelper {
         });
         return response;
     }
-    public TicketEntity createTicket(FlyEntity fly,CustomerEntity customer){
+
+    public TicketEntity createTicket(FlyEntity fly, CustomerEntity customer) {
         var ticketToPersist = TicketEntity.builder()
                 .id(UUID.randomUUID())
                 .fly(fly)
@@ -73,6 +75,22 @@ public class TourHelper {
         return this.ticketRepository.save(ticketToPersist);
 
     }
+
+    public ReservationEntity createReservation(HotelEntity hotel, CustomerEntity customer, Integer totaldays) {
+        var reservationToPersist = ReservationEntity.builder()
+                .id(UUID.randomUUID())
+                .hotel(hotel)
+                .customer(customer)
+                .totalDays(totaldays)
+                .dateTimeReservation(LocalDateTime.now())
+                .dateStart(LocalDate.now())
+                .dateEnd(LocalDate.now().plusDays(totaldays))
+                .price(hotel.getPrice().add(hotel.getPrice().multiply(ReservationService.charges_price_percentage)))
+                .build();
+        return this.reservationRepository.save(reservationToPersist);
+    }
+
+
 }
 
 
