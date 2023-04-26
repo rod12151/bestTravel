@@ -4,7 +4,7 @@ import com.rodmel.best_travel.api.models.responses.FlyResponse;
 import com.rodmel.best_travel.domain.entities.FlyEntity;
 import com.rodmel.best_travel.domain.repositories.FlyRepository;
 import com.rodmel.best_travel.infraestructure.abstract_services.IFlyService;
-import com.rodmel.best_travel.util.SortType;
+import com.rodmel.best_travel.util.enums.SortType;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
