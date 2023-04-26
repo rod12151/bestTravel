@@ -1,5 +1,9 @@
 package com.rodmel.best_travel.api.models.request;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +16,12 @@ import java.io.Serializable;
 @Data
 @Builder
 public class TourHotelRequest implements Serializable {
+    @Positive
+    @NotNull(message = "Id tour is mandatory")
     public Long id;
+
+    @Min(value = 1,message = "Min one days to make reservation")
+    @Max(value = 30,message = "Max 30 days to make reservation")
+    @NotNull(message = "TotalDays is mandatory")
     private Integer TotalDays;
 }

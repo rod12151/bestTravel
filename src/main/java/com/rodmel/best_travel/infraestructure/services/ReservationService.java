@@ -11,6 +11,7 @@ import com.rodmel.best_travel.domain.repositories.CustomerRepository;
 import com.rodmel.best_travel.domain.repositories.HotelRepository;
 import com.rodmel.best_travel.domain.repositories.ReservationRepository;
 import com.rodmel.best_travel.infraestructure.abstract_services.IReservationService;
+import com.rodmel.best_travel.infraestructure.helpers.BlackListHelper;
 import com.rodmel.best_travel.infraestructure.helpers.CustomerHelper;
 import com.rodmel.best_travel.util.exeptions.IdNotFoundException;
 import lombok.AllArgsConstructor;
@@ -34,8 +35,11 @@ public class ReservationService implements IReservationService {
 
     private final CustomerHelper customerHelper;
 
+    private BlackListHelper blackListHelper;
+
     @Override
     public ReservationResponse create(ReservationRequest request) {
+        blackListHelper.isInBlackListCustomer(request.getIdClient());
         var hotel = this.hotelRepository.findById(request.getIdHotel()).orElseThrow(()->new IdNotFoundException("hotel"));
         var customer = this.customerRepository.findById(request.getIdClient()).orElseThrow(()->new IdNotFoundException("customer"));
         var reservationToPersist = ReservationEntity.builder()

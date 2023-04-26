@@ -3,6 +3,7 @@ package com.rodmel.best_travel.api.controllers;
 import com.rodmel.best_travel.api.models.request.TourRequest;
 import com.rodmel.best_travel.api.models.responses.TourResponse;
 import com.rodmel.best_travel.infraestructure.abstract_services.ITourService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +19,12 @@ public class TourController {
     private final ITourService tourService;
 
     @PostMapping
-    public ResponseEntity<TourResponse> post(@RequestBody TourRequest request){
+    public ResponseEntity<TourResponse> post(@Valid @RequestBody TourRequest request){
         return ResponseEntity.ok(this.tourService.create(request));
 
     }
     @GetMapping(path = "{id}")
-    public ResponseEntity<TourResponse> post(@PathVariable Long id){
+    public ResponseEntity<TourResponse> get(@PathVariable Long id){
         return ResponseEntity.ok(this.tourService.read(id));
     }
     @DeleteMapping(path = "{id}")
@@ -37,7 +38,7 @@ public class TourController {
         return ResponseEntity.noContent().build();
     }
     @PatchMapping(path = "{tourId}/add_ticket/{flyId}")
-    public ResponseEntity<Map<String,UUID>> postTicket(@PathVariable Long tourId, @PathVariable Long flyId) {
+    public ResponseEntity<Map<String,UUID>> postTicket(@Valid @PathVariable Long tourId, @PathVariable Long flyId) {
         var response = Collections.singletonMap("ticketId",this.tourService.addTicket(tourId, flyId));
         return ResponseEntity.ok(response);
 
@@ -53,6 +54,7 @@ public class TourController {
     }
     @PatchMapping(path = "{tourId}/add_reservation/{hotelId}")
     public ResponseEntity<Map<String,UUID>> postReservation(
+            @Valid
             @PathVariable Long tourId,
             @PathVariable Long hotelId,
             @RequestParam Integer totalDays ) {
