@@ -2,7 +2,7 @@ package com.rodmel.best_travel.api.controllers;
 
 import com.rodmel.best_travel.api.models.responses.HotelResponse;
 import com.rodmel.best_travel.infraestructure.abstract_services.IHotelService;
-import com.rodmel.best_travel.util.SortType;
+import com.rodmel.best_travel.util.enums.SortType;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;

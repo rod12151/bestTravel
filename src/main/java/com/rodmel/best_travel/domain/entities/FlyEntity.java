@@ -1,6 +1,6 @@
 package com.rodmel.best_travel.domain.entities;
 
-import com.rodmel.best_travel.util.AeroLine;
+import com.rodmel.best_travel.util.enums.AeroLine;
 import jakarta.persistence.*;
 import lombok.*;
 

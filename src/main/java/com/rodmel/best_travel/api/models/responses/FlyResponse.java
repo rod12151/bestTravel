@@ -1,9 +1,6 @@
 package com.rodmel.best_travel.api.models.responses;
 
-import com.rodmel.best_travel.util.AeroLine;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import com.rodmel.best_travel.util.enums.AeroLine;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
