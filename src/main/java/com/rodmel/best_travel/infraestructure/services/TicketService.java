@@ -8,6 +8,7 @@ import com.rodmel.best_travel.domain.repositories.CustomerRepository;
 import com.rodmel.best_travel.domain.repositories.FlyRepository;
 import com.rodmel.best_travel.domain.repositories.TicketRepository;
 import com.rodmel.best_travel.infraestructure.abstract_services.ITicketService;
+import com.rodmel.best_travel.infraestructure.helpers.BlackListHelper;
 import com.rodmel.best_travel.infraestructure.helpers.CustomerHelper;
 import com.rodmel.best_travel.util.BestTravelUtil;
 import lombok.AllArgsConstructor;
@@ -32,9 +33,11 @@ public class TicketService implements ITicketService {
     private final TicketRepository ticketRepository;
 
     private final CustomerHelper customerHelper;
+
+    private BlackListHelper blackListHelper;
     @Override
     public TicketResponse create(TicketRequest request) {
-
+        blackListHelper.isInBlackListCustomer(request.getIdClient());
         var fly = flyRepository.findById(request.getIdFly()).orElseThrow();
         var customer = customerRepository.findByDni(request.getIdClient()).orElseThrow();
 
