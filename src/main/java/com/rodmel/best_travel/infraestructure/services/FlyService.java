@@ -4,10 +4,12 @@ import com.rodmel.best_travel.api.models.responses.FlyResponse;
 import com.rodmel.best_travel.domain.entities.FlyEntity;
 import com.rodmel.best_travel.domain.repositories.FlyRepository;
 import com.rodmel.best_travel.infraestructure.abstract_services.IFlyService;
+import com.rodmel.best_travel.util.constants.CacheConstants;
 import com.rodmel.best_travel.util.enums.SortType;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -25,6 +27,7 @@ import java.util.stream.Collectors;
 public class FlyService implements IFlyService {
     private final FlyRepository flyRepository;
     @Override
+    @Cacheable(value = CacheConstants.FLY_CACHE_NAME)
     public Page<FlyResponse> realAll(Integer page, Integer size, SortType sortType) {
         PageRequest pageRequest = null;
         switch (sortType){
@@ -36,6 +39,7 @@ public class FlyService implements IFlyService {
     }
 
     @Override
+    @Cacheable(value = CacheConstants.FLY_CACHE_NAME)
     public Set<FlyResponse> readLessPrice(BigDecimal price) {
         return this.flyRepository.selectLessPrice(price)
                 .stream()
@@ -45,6 +49,7 @@ public class FlyService implements IFlyService {
     }
 
     @Override
+    @Cacheable(value = CacheConstants.FLY_CACHE_NAME)
     public Set<FlyResponse> readBetweenPrices(BigDecimal min, BigDecimal max) {
         return this.flyRepository.selectBetweenPrice(min, max)
                 .stream()
@@ -54,6 +59,7 @@ public class FlyService implements IFlyService {
     }
 
     @Override
+    @Cacheable(value = CacheConstants.FLY_CACHE_NAME)
     public Set<FlyResponse> readByOriginDestiny(String origen, String destiny) {
         return this.flyRepository.selectOriginDestiny(origen,destiny)
                 .stream()
