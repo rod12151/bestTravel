@@ -15,12 +15,16 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
 @EnableCaching
+@EnableScheduling
 @Slf4j
 public class RedisConfig {
     @Value(value = "${cache.redis.address}")
@@ -43,6 +47,15 @@ public class RedisConfig {
                 CacheConstants.HOTEL_CACHE_NAME,new CacheConfig()
         );
         return new RedissonSpringCacheManager(redissonClient, config);
+    }
+    @CacheEvict(cacheNames = {
+            CacheConstants.FLY_CACHE_NAME,
+            CacheConstants.HOTEL_CACHE_NAME
+    },allEntries = true)
+    @Scheduled(cron = CacheConstants.SCHEDULED_RESET_CACHE)
+    @Async
+    public void deleteCache(){
+        log.info("Clean cache");
     }
 
 
