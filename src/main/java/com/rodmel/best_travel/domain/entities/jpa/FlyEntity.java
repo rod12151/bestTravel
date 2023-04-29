@@ -1,4 +1,4 @@
-package com.rodmel.best_travel.domain.entities;
+package com.rodmel.best_travel.domain.entities.jpa;
 
 import com.rodmel.best_travel.util.enums.AeroLine;
 import jakarta.persistence.*;

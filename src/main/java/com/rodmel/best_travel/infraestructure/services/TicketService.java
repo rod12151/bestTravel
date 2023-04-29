@@ -3,10 +3,10 @@ package com.rodmel.best_travel.infraestructure.services;
 import com.rodmel.best_travel.api.models.request.TicketRequest;
 import com.rodmel.best_travel.api.models.responses.FlyResponse;
 import com.rodmel.best_travel.api.models.responses.TicketResponse;
-import com.rodmel.best_travel.domain.entities.TicketEntity;
-import com.rodmel.best_travel.domain.repositories.CustomerRepository;
-import com.rodmel.best_travel.domain.repositories.FlyRepository;
-import com.rodmel.best_travel.domain.repositories.TicketRepository;
+import com.rodmel.best_travel.domain.entities.jpa.TicketEntity;
+import com.rodmel.best_travel.domain.repositories.jpa.CustomerRepository;
+import com.rodmel.best_travel.domain.repositories.jpa.FlyRepository;
+import com.rodmel.best_travel.domain.repositories.jpa.TicketRepository;
 import com.rodmel.best_travel.infraestructure.abstract_services.ITicketService;
 import com.rodmel.best_travel.infraestructure.helpers.BlackListHelper;
 import com.rodmel.best_travel.infraestructure.helpers.CustomerHelper;
@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Transactional

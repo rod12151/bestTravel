@@ -2,11 +2,11 @@ package com.rodmel.best_travel.infraestructure.services;
 
 import com.rodmel.best_travel.api.models.request.TourRequest;
 import com.rodmel.best_travel.api.models.responses.TourResponse;
-import com.rodmel.best_travel.domain.entities.*;
-import com.rodmel.best_travel.domain.repositories.CustomerRepository;
-import com.rodmel.best_travel.domain.repositories.FlyRepository;
-import com.rodmel.best_travel.domain.repositories.HotelRepository;
-import com.rodmel.best_travel.domain.repositories.TourRepository;
+import com.rodmel.best_travel.domain.entities.jpa.*;
+import com.rodmel.best_travel.domain.repositories.jpa.CustomerRepository;
+import com.rodmel.best_travel.domain.repositories.jpa.FlyRepository;
+import com.rodmel.best_travel.domain.repositories.jpa.HotelRepository;
+import com.rodmel.best_travel.domain.repositories.jpa.TourRepository;
 import com.rodmel.best_travel.infraestructure.abstract_services.ITourService;
 import com.rodmel.best_travel.infraestructure.helpers.BlackListHelper;
 import com.rodmel.best_travel.infraestructure.helpers.CustomerHelper;
@@ -15,7 +15,6 @@ import com.rodmel.best_travel.util.enums.Tables;
 import com.rodmel.best_travel.util.exeptions.IdNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.cassandra.CassandraProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

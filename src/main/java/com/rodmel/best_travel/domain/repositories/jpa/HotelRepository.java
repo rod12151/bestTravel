@@ -1,6 +1,6 @@
-package com.rodmel.best_travel.domain.repositories;
+package com.rodmel.best_travel.domain.repositories.jpa;
 
-import com.rodmel.best_travel.domain.entities.HotelEntity;
+import com.rodmel.best_travel.domain.entities.jpa.HotelEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

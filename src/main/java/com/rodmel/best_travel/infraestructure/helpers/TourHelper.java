@@ -1,8 +1,8 @@
 package com.rodmel.best_travel.infraestructure.helpers;
 
-import com.rodmel.best_travel.domain.entities.*;
-import com.rodmel.best_travel.domain.repositories.ReservationRepository;
-import com.rodmel.best_travel.domain.repositories.TicketRepository;
+import com.rodmel.best_travel.domain.entities.jpa.*;
+import com.rodmel.best_travel.domain.repositories.jpa.ReservationRepository;
+import com.rodmel.best_travel.domain.repositories.jpa.TicketRepository;
 import com.rodmel.best_travel.infraestructure.services.ReservationService;
 import com.rodmel.best_travel.infraestructure.services.TicketService;
 import com.rodmel.best_travel.util.BestTravelUtil;
