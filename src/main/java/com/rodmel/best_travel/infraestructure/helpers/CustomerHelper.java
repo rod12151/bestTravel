@@ -1,6 +1,6 @@
 package com.rodmel.best_travel.infraestructure.helpers;
 
-import com.rodmel.best_travel.domain.repositories.CustomerRepository;
+import com.rodmel.best_travel.domain.repositories.jpa.CustomerRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

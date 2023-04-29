@@ -1,8 +1,8 @@
 package com.rodmel.best_travel.infraestructure.services;
 
 import com.rodmel.best_travel.api.models.responses.HotelResponse;
-import com.rodmel.best_travel.domain.entities.HotelEntity;
-import com.rodmel.best_travel.domain.repositories.HotelRepository;
+import com.rodmel.best_travel.domain.entities.jpa.HotelEntity;
+import com.rodmel.best_travel.domain.repositories.jpa.HotelRepository;
 import com.rodmel.best_travel.infraestructure.abstract_services.IHotelService;
 import com.rodmel.best_travel.util.constants.CacheConstants;
 import com.rodmel.best_travel.util.enums.SortType;

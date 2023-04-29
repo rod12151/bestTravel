@@ -31,7 +31,7 @@
       environment:
         MONGO_INITDB_ROOT_USERNAME: rodmel
         MONGO_INITDB_ROOT_PASSWORD: rodmel
-        MONGO_INITDB_DATABASE: app_users
+        MONGO_INITDB_DATABASE: users
       ports:
         - "27017:27017"
       volumes:

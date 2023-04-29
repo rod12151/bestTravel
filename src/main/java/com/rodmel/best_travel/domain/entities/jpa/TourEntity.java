@@ -1,5 +1,8 @@
-package com.rodmel.best_travel.domain.entities;
+package com.rodmel.best_travel.domain.entities.jpa;
 
+import com.rodmel.best_travel.domain.entities.jpa.CustomerEntity;
+import com.rodmel.best_travel.domain.entities.jpa.ReservationEntity;
+import com.rodmel.best_travel.domain.entities.jpa.TicketEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

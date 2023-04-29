@@ -5,11 +5,11 @@ import com.rodmel.best_travel.api.models.request.ReservationRequest;
 import com.rodmel.best_travel.api.models.responses.HotelResponse;
 import com.rodmel.best_travel.api.models.responses.ReservationResponse;
 
-import com.rodmel.best_travel.domain.entities.ReservationEntity;
+import com.rodmel.best_travel.domain.entities.jpa.ReservationEntity;
 
-import com.rodmel.best_travel.domain.repositories.CustomerRepository;
-import com.rodmel.best_travel.domain.repositories.HotelRepository;
-import com.rodmel.best_travel.domain.repositories.ReservationRepository;
+import com.rodmel.best_travel.domain.repositories.jpa.CustomerRepository;
+import com.rodmel.best_travel.domain.repositories.jpa.HotelRepository;
+import com.rodmel.best_travel.domain.repositories.jpa.ReservationRepository;
 import com.rodmel.best_travel.infraestructure.abstract_services.IReservationService;
 import com.rodmel.best_travel.infraestructure.helpers.BlackListHelper;
 import com.rodmel.best_travel.infraestructure.helpers.CustomerHelper;

@@ -1,7 +1,6 @@
-package com.rodmel.best_travel.domain.repositories;
+package com.rodmel.best_travel.domain.repositories.jpa;
 
-import com.rodmel.best_travel.domain.entities.TourEntity;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.rodmel.best_travel.domain.entities.jpa.TourEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

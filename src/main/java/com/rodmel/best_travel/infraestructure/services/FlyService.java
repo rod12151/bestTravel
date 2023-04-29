@@ -1,8 +1,8 @@
 package com.rodmel.best_travel.infraestructure.services;
 
 import com.rodmel.best_travel.api.models.responses.FlyResponse;
-import com.rodmel.best_travel.domain.entities.FlyEntity;
-import com.rodmel.best_travel.domain.repositories.FlyRepository;
+import com.rodmel.best_travel.domain.entities.jpa.FlyEntity;
+import com.rodmel.best_travel.domain.repositories.jpa.FlyRepository;
 import com.rodmel.best_travel.infraestructure.abstract_services.IFlyService;
 import com.rodmel.best_travel.util.constants.CacheConstants;
 import com.rodmel.best_travel.util.enums.SortType;

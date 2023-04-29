@@ -1,4 +1,4 @@
-package com.rodmel.best_travel.domain.entities;
+package com.rodmel.best_travel.domain.entities.jpa;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -34,6 +34,6 @@ public class TicketEntity implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
-    private  CustomerEntity customer;
+    private CustomerEntity customer;
 
 }
