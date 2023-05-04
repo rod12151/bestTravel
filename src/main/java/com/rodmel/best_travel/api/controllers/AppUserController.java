@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping(path = "user")
@@ -26,12 +27,12 @@ public class AppUserController {
     }
     @Operation(summary = "add role user")
     @PatchMapping("add-role")
-    public ResponseEntity<Map<String, List<String>>> addRole(@RequestParam String username, @RequestParam String role){
+    public ResponseEntity<Map<String, Set<String>>> addRole(@RequestParam String username, @RequestParam String role){
         return ResponseEntity.ok(this.modifyUserService.addRole(username,role));
     }
     @Operation(summary = "remove role user")
     @PatchMapping("remove-role")
-    public ResponseEntity<Map<String, List<String>>> removeRoe(@RequestParam String username, @RequestParam String role){
+    public ResponseEntity<Map<String, Set<String>>> removeRoe(@RequestParam String username, @RequestParam String role){
         return ResponseEntity.ok(this.modifyUserService.removeRole(username,role));
     }
 
