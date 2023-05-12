@@ -79,7 +79,7 @@ public class TourService implements ITourService {
 
     @Override
     public void delete(Long id) {
-        var tourToDelete = tourRepository.findById(id).orElseThrow();
+        var tourToDelete = tourRepository.findById(id).orElseThrow(()->new IdNotFoundException(Tables.tour.name()));
         this.tourRepository.delete(tourToDelete);
 
     }
@@ -95,7 +95,7 @@ public class TourService implements ITourService {
     @Override
     public UUID addTicket(Long flyId, Long tourId) {
         var tourUpdate = this.tourRepository.findById(tourId).orElseThrow(()->new IdNotFoundException(Tables.tour.name()));
-        var fly = this.flyRepository.findById(flyId).orElseThrow();
+        var fly = this.flyRepository.findById(flyId).orElseThrow(()->new IdNotFoundException(Tables.fly.name()));
         var ticket = this.tourHelper.createTicket(fly,tourUpdate.getCustomer());
         tourUpdate.addTicket(ticket);
         this.tourRepository.save(tourUpdate);

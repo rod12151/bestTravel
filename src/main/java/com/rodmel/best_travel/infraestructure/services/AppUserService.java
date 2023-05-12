@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 @Service
 @Slf4j
 @AllArgsConstructor
@@ -29,7 +31,7 @@ public class AppUserService implements ModifyUserService{
     }
 
     @Override
-    public Map<String, List<String>> addRole(String username, String role) {
+    public Map<String, Set<String>> addRole(String username, String role) {
         var user = this.appUserRepository.findByUsername(username).
                 orElseThrow(()-> new UserNameNotFoundException(COLLECTION_NAME));
         user.getRole().getGrantedAuthorities().add(role);
@@ -37,10 +39,11 @@ public class AppUserService implements ModifyUserService{
         var authorities = userSaved.getRole().getGrantedAuthorities();
         log.info("User {} add role {}",userSaved.getUsername(),userSaved.getRole().getGrantedAuthorities().toString());
         return Collections.singletonMap(userSaved.getUsername(),authorities);
+
     }
 
     @Override
-    public Map<String, List<String>> removeRole(String username, String role) {
+    public Map<String, Set<String>> removeRole(String username, String role) {
         var user = this.appUserRepository.findByUsername(username).
                 orElseThrow(()-> new UserNameNotFoundException(COLLECTION_NAME));
         user.getRole().getGrantedAuthorities().remove(role);

@@ -4,6 +4,7 @@ import com.rodmel.best_travel.api.models.responses.BaseErrorResponse;
 import com.rodmel.best_travel.api.models.responses.ErrorResponse;
 import com.rodmel.best_travel.api.models.responses.ErrorsResponse;
 import com.rodmel.best_travel.util.exeptions.IdNotFoundException;
+import com.rodmel.best_travel.util.exeptions.UserNameNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,8 +16,8 @@ import java.util.ArrayList;
 @RestControllerAdvice
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class BadRequestController {
-    @ExceptionHandler(IdNotFoundException.class)
-    public BaseErrorResponse handleIdNotFound(IdNotFoundException exception){
+    @ExceptionHandler({IdNotFoundException.class, UserNameNotFoundException.class})
+    public BaseErrorResponse handleIdNotFound(RuntimeException exception){
         return ErrorResponse.builder()
                 .error(exception.getMessage())
                 .status(HttpStatus.BAD_REQUEST.name())
